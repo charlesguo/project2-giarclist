@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Giarclist</title>
+  <meta name="viewport" content="width-device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <nav class="navbar navbar-default navbar-fixed_top" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header page-scroll">
+        <%= link_to "Giarclist", root_path, class: "navbar-brand" %>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- <%= link_to root_path, class: 'navbar-brand' do %>
+        <%= image_tag 'thinkful.png', class: 'logo' %>
+        Thinklist
+        <% end %> -->
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="collapse">
+        <ul class="nav navbar-nav">
+          <!-- <li class="<%= "active" if current_page?("/")  %>"> -->
+            <%#= link_to "Home", root_path %>
+          <!-- </li> -->
+          <li class="<%= "active" if current_page?("/listings")  %>">
+            <%= link_to "Buy & Sell", listings_path %>
+          </li>
+          <!-- <li class="<%= "active" if current_page?("/categories")  %>"> -->
+            <%#= link_to "Categories", categories_path %>
+          <!-- </li> -->
+          <li class="<%= "active" if current_page?("/help")  %>">
+            <%= link_to "Help & Support", "/help" %>
+          </li>
+          <li class="<%= "active" if current_page?("/about")  %>">
+            <%= link_to "About", "/about" %>
+          </li>
+        </ul>
+
+        <% if !user_signed_in? %>
+          <div class="navbar-right">
+            <ul class="nav navbar-nav">
+              <li class="<%= "active" if current_page?("/users/sign_in")  %>">
+                <%= link_to "Sign In", new_user_session_path %>
+              </li>
+              <li class="<%= "active" if current_page?("/users/sign_up")  %>">
+                <%= link_to "Sign Up", new_user_registration_path %>
+              </li>
+            </ul>
+          </div>
+        <% else %>
+          <div class="navbar-right">
+            <p class="navbar-text">
+              Signed in as <%= current_user.email %>
+            </p>
+            <ul class="nav navbar-nav">
+              <li class="<%= "active" if current_page?("/users/edit")  %>">
+                <%= link_to "Manage Account", edit_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+              </li>
+              <li class="round-image-50">
+                <%= image_tag(current_user.avatar.url(:thumb)) %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </nav>
+
+
+
+  <div id="main">
+
+    <% flash.each do |key, value| %>
+    <div class='flash' id='<%= key %>'>
+      <%= value %>
+    </div>
+    <% end %>
+
+    <div><%= yield %></div>
+  </div>
+
+
+</body>
+</html>

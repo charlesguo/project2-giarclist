@@ -1,0 +1,41 @@
+<header>
+  <h2><%= @listing.title %></h2>
+
+  <ul class="actions">
+    <li><%= link_to fa_icon("list-alt") + ' Back to Listings', listing_path(@listing), class: "btn btn-info" %></li>
+    <% if user_signed_in? && (current_user.id == @listing.user_id) %>
+      <li><%= link_to fa_icon("pencil") + ' Edit Listing', edit_listing_path(@listing), class: "btn btn-primary" %></li>
+      <li><%= link_to fa_icon("trash") + ' Delete Listing', listing_path(@listing), method: :delete, data: { confirm: "Do you really want to delete this project" }, class: "btn btn-danger" %></li>
+    <% end %>
+  </ul>
+
+</header>
+
+<p>
+  <strong>Category:</strong>
+  <%= @listing.category.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @listing.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @listing.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= number_to_currency(@listing.price) %>
+</p>
+
+<p>
+  <strong>Seller:</strong>
+  <%= @listing.user.username %>
+</p>
+
+<div>
+  <%= image_tag @listing.image.url(:medium) %>
+</div>

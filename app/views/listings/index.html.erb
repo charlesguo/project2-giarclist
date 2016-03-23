@@ -1,0 +1,47 @@
+<!-- <p id="notice"><%= notice %></p> -->
+
+<header>
+  <h1>Listings</h1>
+
+  <ul class="actions">
+    <li><%= link_to 'New Listing', new_listing_path, class: "new" %></li>
+  </ul>
+
+</header>
+
+<%= form_tag(listings_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Listing Titles" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<% if @listings.present?  %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Seller</th>
+        <th colspan="5"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @listings.each do |listing| %>
+        <tr>
+          <td><%= listing.title %></td>
+          <td><%= listing.description %></td>
+          <td><%= listing.category.title %></td>
+          <td><%= number_to_currency(listing.price)  %></td>
+          <td><%= listing.user.username %></td>
+          <td><%= link_to 'Show', listing %></td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <br/>
+  <p>There are no listings containing the term(s) <%= params[:search] %>.</p>
+<% end %>

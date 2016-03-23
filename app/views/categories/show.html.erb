@@ -1,0 +1,9 @@
+<header>
+  <h2><%= @category.title %></h2>
+
+  <ul class="actions">
+    <li><%= link_to fa_icon("pencil") + ' Edit Category', edit_category_path(@category), class: "btn btn-primary" %></li>
+    <li><%= link_to fa_icon("trash") + ' Delete Category', category_path(@category), method: :delete, data: { confirm: "Do you really want to delete this project" }, class: "btn btn-danger" %></li>
+  </ul>
+
+</header>
