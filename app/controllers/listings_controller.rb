@@ -13,6 +13,13 @@ class ListingsController < ApplicationController
     end
   end
 
+  def search
+  end
+
+  def search_results
+    @listings = Listing.search_title(params[:search]).order("created_at DESC")
+  end
+
   # GET /listings/1
   # GET /listings/1.json
   def show

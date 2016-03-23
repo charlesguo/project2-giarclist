@@ -2,8 +2,13 @@
   <h2><%= @category.title %></h2>
 
   <ul class="actions">
-    <li><%= link_to fa_icon("pencil") + ' Edit Category', edit_category_path(@category), class: "btn btn-primary" %></li>
-    <li><%= link_to fa_icon("trash") + ' Delete Category', category_path(@category), method: :delete, data: { confirm: "Do you really want to delete this project" }, class: "btn btn-danger" %></li>
+    <li><%= link_to fa_icon("list-alt") + ' Categories', category_path(@category), class: "btn btn-info" %></li>
+    <li><%= link_to fa_icon("pencil") + ' Edit', edit_category_path(@category), class: "btn btn-primary" %></li>
+    <li><%= link_to fa_icon("trash") + ' Delete', category_path(@category), method: :delete, data: { confirm: "Do you really want to delete this category?" }, class: "btn btn-danger" %></li>
   </ul>
-
 </header>
+
+<p>
+  <strong>Description:</strong>
+  <%= @category.description %>
+</p>

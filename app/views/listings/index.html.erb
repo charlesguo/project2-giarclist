@@ -10,7 +10,7 @@
 </header>
 
 <%= form_tag(listings_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Listing Titles" %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Listings" %>
   <%= submit_tag "Search" %>
 <% end %>
 

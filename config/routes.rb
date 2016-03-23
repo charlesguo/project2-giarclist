@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :listings
   resources :categories
 
-
   get "/:page" => "static#show"
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -2,10 +2,10 @@
   <h2><%= @listing.title %></h2>
 
   <ul class="actions">
-    <li><%= link_to fa_icon("list-alt") + ' Back to Listings', listing_path(@listing), class: "btn btn-info" %></li>
+    <li><%= link_to fa_icon("list-alt") + ' Listings', listings_path, class: "btn btn-info" %></li>
     <% if user_signed_in? && (current_user.id == @listing.user_id) %>
-      <li><%= link_to fa_icon("pencil") + ' Edit Listing', edit_listing_path(@listing), class: "btn btn-primary" %></li>
-      <li><%= link_to fa_icon("trash") + ' Delete Listing', listing_path(@listing), method: :delete, data: { confirm: "Do you really want to delete this project" }, class: "btn btn-danger" %></li>
+      <li><%= link_to fa_icon("pencil") + ' Edit', edit_listing_path(@listing), class: "btn btn-primary" %></li>
+      <li><%= link_to fa_icon("trash") + ' Delete', listing_path(@listing), method: :delete, data: { confirm: "Do you really want to delete this listing?" }, class: "btn btn-danger" %></li>
     <% end %>
   </ul>
 
