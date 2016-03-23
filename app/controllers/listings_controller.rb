@@ -1,6 +1,20 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  # before_filter :authorize_listing, only: [:edit]
+
+  # def authorize_listing
+  #   @listing = Listing.where(user_id: current_user.id)
+  #   print 'rtftgfge'
+  #   print @listing.inspect
+  #
+  #   if @listing.blank?
+  #     flash[:error] = "You cannot access someone else's record."
+  #     redirect_to root_path
+  #   else
+  #     redirect_to :controller => 'listings', :action => 'edit', :id => params[:id]
+  #   end
+  # end
 
   # GET /listings
   # GET /listings.json
@@ -34,6 +48,12 @@ class ListingsController < ApplicationController
   # GET /listings/1/edit
   def edit
     @categories = Category.all
+
+    @check = Listing.find(params[:id]).user_id
+    if(@check != current_user.id)
+      flash[:error] = "You cannot edit someone else's record."
+      redirect_to listings_path
+    end
   end
 
   # POST /listings

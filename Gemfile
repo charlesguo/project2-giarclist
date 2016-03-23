@@ -7,7 +7,15 @@ gem 'rails', '4.2.5.2'
 gem 'pg', '~> 0.15'
 gem 'pg_search'
 gem 'devise'
-gem 'paperclip'
+gem 'paperclip', "~> 4.3"
+
+gem "fog"
+gem "figaro"
+gem 'rails_12factor', group: :production
+gem 'puma'
+
+#ruby "2.2.0"
+
 # install bootstrap
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'

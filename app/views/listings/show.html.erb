@@ -34,8 +34,16 @@
 <p>
   <strong>Seller:</strong>
   <%= @listing.user.username %>
+  <% if @listing.user.avatar? %>
+    <div class="round-image-50">
+      <%= image_tag(@listing.user.avatar.url(:thumb)) %>
+    </div>
+  <% end %>
 </p>
 
 <div>
-  <%= image_tag @listing.image.url(:medium) %>
+  <% if @listing.image? %>
+    <strong>Image of Product or Service:</strong>
+    <div><%= image_tag @listing.image.url(:medium) %></div>
+  <% end %>
 </div>

@@ -42,4 +42,16 @@ Rails.application.configure do
 
   # add ImageMagick
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+  config.paperclip_defaults = {
+   :storage => :fog,
+   :fog_directory => "charles-paperclip-project",
+   :fog_credentials => {
+     :provider => 'AWS',
+     :region => 'us-west-2',
+     :scheme => 'http',
+     :aws_access_key_id => ENV['aws_key'],
+     :aws_secret_access_key => ENV['aws_secret']
+   }
+ }
 end
